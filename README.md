@@ -98,5 +98,11 @@ func evalArithmeticExpression(_ input: String) -> Double {
     return output[0]
 }
 
+B. Let's Try: SwiftUI
 
-evalArithmeticExpression("1 + 2 * 3")
+Представьте, что вы разработчик Яндекса.
+Вам дали задание сверстать макет виджета на Swift UI.
+В виджете отображается текущее время, а по кнопке старт каждую секунду меняется цвет двоеточия.
+Дизайнер передал все необходимые параметры:
+<img width="358" alt="Снимок экрана 2021-05-27 в 18 38 37" src="https://user-images.githubusercontent.com/49961778/119965678-32f68500-bfb3-11eb-80da-61501a8f9012.png">
+
