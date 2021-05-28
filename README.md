@@ -17,13 +17,86 @@ A. Сравнение двух последовательностей
 
 Необходимо напечатать true, если результирующие строки в поле ввода будут совпадать или false, если они будут отличаться
 Пример 1
-
-Ввод Скопировать ввод	Вывод Скопировать вывод
 abc. abd.
 true
-Пример 2
 
-Ввод Скопировать ввод	Вывод Скопировать вывод
+Пример 2
 aaaa... bbbb...
 false
 
+
+C. Добавить операцию в калькулятор
+
+Ваш коллега написал приложение-калькулятор и ушел в отпуск. Ваша команда хочет выпустить приложение для клиентов, но оказалось, что оно не поддерживает операцию возведения в степень.
+Вам нужно добавить поддержку новой операции – возведение в степень (оператор ^).
+Ожидается, что вы так же проведете рефакторинг текущего кода, чтобы получить наиболее простое, поддерживаемое и расширяемое решение (в будущем нам могут потребоваться операторы "(", ")" и другие).
+Примечания
+
+func evalArithmeticExpression(_ input: String) -> Double {
+    let operators = [
+        (name: "+", associativityIsLeft: true, precedence: 10),
+        (name: "-", associativityIsLeft: true, precedence: 10),
+        (name: "*", associativityIsLeft: true, precedence: 20),
+        (name: "/", associativityIsLeft: true, precedence: 20),
+        ]
+    
+    var output: [Double] = []
+    var opStack: [(name: String, associativityIsLeft: Bool, precedence: Int)] = []
+
+    for token in input.components(separatedBy: .whitespaces) {
+        let number = Double(token)
+        if (number != nil) {
+            output += [number!]
+        } else {
+            let op = operators[operators.firstIndex(where: { $0.name == token })!]
+
+            while !opStack.isEmpty {
+                let topOperator = opStack.last!
+                
+                if op.associativityIsLeft && op.precedence <= topOperator.precedence || !op.associativityIsLeft && op.precedence < topOperator.precedence {
+                    opStack.popLast()
+                    let rhs = output.popLast()!, lhs = output.popLast()!
+                    var result: Double = 0
+                    if topOperator.name == "+" {
+                        result = rhs + lhs
+                    } else if topOperator.name == "-" {
+                        result = lhs - rhs
+                    } else if topOperator.name == "*" {
+                        result = lhs * rhs
+                    } else if topOperator.name == "/" {
+                        result = lhs / rhs
+                    }
+                    output.append(result)
+            
+                } else {
+                    break
+                }
+            }
+
+            opStack += [op]
+        }
+    }
+    
+    while !opStack.isEmpty {
+        let topOperator = opStack.popLast()!
+        
+        let rhs = output.popLast()!, lhs = output.popLast()!
+        var result: Double = 0
+
+        if topOperator.name == "+" {
+            result = rhs + lhs
+        } else if topOperator.name == "-" {
+            result = lhs - rhs
+        } else if topOperator.name == "*" {
+            result = lhs * rhs
+        } else if topOperator.name == "/" {
+            result = lhs / rhs
+        }
+        
+        output.append(result)
+    }
+    return output[0]
+}
+
+
+evalArithmeticExpression("1 + 2 * 3")
