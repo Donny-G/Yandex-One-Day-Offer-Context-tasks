@@ -1,3 +1,4 @@
+
 # AnonAPITask
 Решение одного задания с использованием Combine
 
@@ -29,5 +30,6 @@ GET параметры запроса:
 Пагинация работает так:
 первый запрос идет без "after", чтобы получить следующие страницы подгрузки нужно передать параметр «cursor» из предыдущего ответа. Пока «cursor» не null - можно грузить дальше.
 
-
+![Simulator Screen Shot - iPhone 12 - 2021-06-07 at 16 39 07](https://user-images.githubusercontent.com/49961778/121035402-84bebc80-c7b6-11eb-8f34-5e1bc76176b6.png)
+![Simulator Screen Shot - iPhone 12 - 2021-06-07 at 16 39 24](https://user-images.githubusercontent.com/49961778/121035419-89837080-c7b6-11eb-9ad0-51d06d57b36d.png)
 
