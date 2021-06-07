@@ -38,6 +38,7 @@ struct SingleItemView: View {
     let isMyFavorite: Bool
     var name: String
     
+    
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
