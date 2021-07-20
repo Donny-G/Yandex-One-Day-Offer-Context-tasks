@@ -1,6 +1,6 @@
 # Yandex-One-Day-Offer-Context-tasks
 Решения задач на отборочном этапе Yandex One Day Offer
-
+test edit
 A. Сравнение двух последовательностей
 
 Ограничение времени	10 секунд
